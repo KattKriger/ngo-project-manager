@@ -6,13 +6,21 @@ use Illuminate\Http\Request;
 
 class ReportController extends Controller
 {
-    //no comments yet!
-    public function store(Request $request)
-{
-    //no comments yet!
-    Report::create($request->all());
+    //pulls all rows from DB
+    public function store(Request $request){
+    
+        Report::create($request->all());
 
-    return "Saved!";
-}
+        return "Saved!";
+    }
+
+    //sends data to the view
+    public function index(){
+        $reports = \App\Models\Report::all();
+
+        return view('reports.index', compact('reports'));
+    }
+
+
 }
 
